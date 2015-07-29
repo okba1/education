@@ -1,5 +1,6 @@
 {
     "name": "okba/bac",
+	
     "license": "proprietary",
     "type": "project",
     "autoload": {
