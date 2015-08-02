@@ -1,0 +1,3 @@
+former_students_inscription:
+  path: /home
+  defaults: { _controller: FormerStudentsBundle:Bac:index}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% block title %}IMATA Plateforme{% endblock %}</title>
+
+    {# On charge le CSS de bootstrap depuis le site directement #}
+    {% block css %}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" type="text/css"/>
+     <link rel="stylesheet" href="{{ asset('css/styles.css') }}" type="text/css"/>
+    {% endblock %}
+</head>
+
+<body>
+  <nav class="navbar-green" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#}}">We Study</a>
+    </div>
+     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Accueil<span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Inscription</a></li>
+        <li><a href="#">Liste des anciens</a></li>
+        <li><a href="#">Documentation</a></li>
+      </ul> 
+    </div><!-- /.navbar-collapse -->
+  </nav>
+  <div id='head' class="jumbotron">
+    <div class="container"> 
+        <h1>We Study</h1>
+        <p>
+            Le chemin vers l'excéllence
+        </p>
+    </div>
+  </div>
+  <section>
+  </section>
+  <footer>
+    <p>Copyright {{ 'now'|date('Y') }} and beyond.</p>
+  </footer>
+
+  {% block javascripts %}
+    {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  {% endblock %}
+
+</body>
+</html>
