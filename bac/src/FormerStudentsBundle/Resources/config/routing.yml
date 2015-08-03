@@ -1,3 +1,15 @@
 former_students_inscription:
   path: /home
   defaults: { _controller: FormerStudentsBundle:Bac:index}
+
+former_students_inscription:
+  path: /inscription
+  defaults: { _controller: FormerStudentsBundle:Bac:inscription}
+
+former_students_list:
+  path: /list
+  defaults: { _controller: FormerStudentsBundle:Bac:list}
+
+former_students_documentation:
+  path: /documentation
+  defaults: { _controller: FormerStudentsBundle:Bac:documentation}

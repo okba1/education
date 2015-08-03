@@ -4,26 +4,27 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>{% block title %}IMATA Plateforme{% endblock %}</title>
+  <title>{% block title %}Plateforme d'entraide{% endblock %}</title>
 
     {# On charge le CSS de bootstrap depuis le site directement #}
     {% block css %}
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" type="text/css"/>
-     <link rel="stylesheet" href="{{ asset('css/styles.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}" type="text/css"/>
     {% endblock %}
 </head>
 
 <body>
-  <nav class="navbar-green" role="navigation">
+  <nav id='nav' class="nav-tabs.nav-justified" role="navigation">
     <div class="navbar-header">
-        <a class="navbar-brand" href="#}}">We Study</a>
+        <a class="navbar-brand fa-ul" href="#">We Study</a>
     </div>
      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Accueil<span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Inscription</a></li>
-        <li><a href="#">Liste des anciens</a></li>
-        <li><a href="#">Documentation</a></li>
+        <li class="active"><a href="#" class='fa-lg'>Accueil<span class="sr-only">(current)</span></a></li>
+        <li><a href="{{ path('former_students_inscription')}}" class='fa-lg'>Inscription</a></li>
+        <li><a href="{{ path('former_students_list')}}" class='fa-lg'>Les anciens</a></li>
+        <li><a href="{{ path('former_students_documentation')}}" class='fa-lg'>Documentation</a></li>
       </ul> 
     </div><!-- /.navbar-collapse -->
   </nav>
@@ -35,7 +36,7 @@
         </p>
     </div>
   </div>
-  <section>
+  <section class='content'>
   </section>
   <footer>
     <p>Copyright {{ 'now'|date('Y') }} and beyond.</p>
