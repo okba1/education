@@ -16,7 +16,7 @@ class BacController extends Controller
     }
 
     public function listAction(){
-      return $this->render('FormerStudentsBundle:Bac:studentList.html.twig');
+      return $this->render('FormerStudentsBundle:Bac:studentsList.html.twig');
     }
 
     public function documentationAction(){
