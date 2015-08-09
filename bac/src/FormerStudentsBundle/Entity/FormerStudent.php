@@ -3,12 +3,12 @@
 namespace FormerStudentsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * FormerStudent
  *
- * @ORM\Table()
- * @ORM\Entity
+ *@ORM\Table
+ *@ORM\Entity(repositoryClass="FormerStudentsBundle\Entity\FormerStudentRepository")
  */
 class FormerStudent
 {
@@ -43,20 +43,24 @@ class FormerStudent
     private $mail;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="graduationYear", type="string", length=255)
+     * @ORM\Column(name="graduationYear", type="integer")
      */
     private $graduationYear;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="university", type="string", length=255)
+     *@ORM\ManyToMany(targetEntity = "FormerStudentsBundle\Entity\University", cascade={"persist"})
      */
-    private $university;
+    private $universities;
 
 
+
+    public function __construct()
+    {
+        $this->universities = new ArrayCollection();
+
+    }
     /**
      * Get id
      *
@@ -160,25 +164,32 @@ class FormerStudent
     }
 
     /**
-     * Set university
+     * Add university
      *
      * @param string $university
      * @return FormerStudent
      */
-    public function setUniversity($university)
+    public function addUniversity(University $university)
     {
-        $this->university = $university;
-
+        $this->universities[] = $$university;
         return $this;
     }
 
     /**
-     * Get university
+    * Remoce $university
+    * @param \FormerStudentBundle\Entity\University
+    */
+    public function removeUniversity(University $university){
+        $this->universities->removeElement($university);
+    }
+
+
+     /* Get universities
      *
      * @return string 
      */
-    public function getUniversity()
+    public function getUniversities()
     {
-        return $this->university;
+        return $this->universities;
     }
 }

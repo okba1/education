@@ -1,0 +1,23 @@
+{% extends "FormerStudentsBundle::layout.html.twig" %}
+
+{% block content %}
+<div class='panel-group'>
+{% for student in students %}
+  <div class='panel-group-item'>
+    {{ student.firstName }}
+    {{ student.lastName }}
+    <button id='display-mail'>Afficher le mail</button>
+    {% for university in student.universities %}
+      {{ university.name }}
+      {{ university.country }}
+      {{ university.city }}
+    {% else %}
+      Pas d'université pour cet étudiant
+    {% endfor %}
+
+  </div>
+{% else %}
+    No students have been found.
+{% endfor %}
+</div>
+{% endblock %}

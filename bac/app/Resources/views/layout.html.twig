@@ -15,9 +15,10 @@
 </head>
 
 <body>
+  {% block body %}
   <nav id='nav' class="nav-tabs.nav-justified" role="navigation">
     <div class="navbar-header">
-        <a class="navbar-brand fa-ul" href="#">We Study</a>
+        <a class="navbar-brand fa-ul" href="#">ZarzisStudy</a>
     </div>
      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
@@ -30,18 +31,21 @@
   </nav>
   <div id='head' class="jumbotron">
     <div class="container"> 
-        <h1>We Study</h1>
+        <h1>Zarzis Study</h1>
         <p>
             Le chemin vers l'excéllence
         </p>
     </div>
   </div>
+
   <section class='content'>
+    {% block content %}
+    {% endblock %}
   </section>
   <footer>
     <p>Copyright {{ 'now'|date('Y') }} and beyond.</p>
   </footer>
-
+  {% endblock %}
   {% block javascripts %}
     {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -49,4 +53,5 @@
   {% endblock %}
 
 </body>
+
 </html>

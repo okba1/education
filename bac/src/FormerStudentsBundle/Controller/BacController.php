@@ -3,6 +3,10 @@
 namespace FormerStudentsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use \FormerStudentsBundle\Entity\FormerStudent;
+use \FormerStudentsBundle\Entity\University;
+use \FormerStudentsBundle\Form\FormerStudentType;
+use Symfony\Component\HttpFoundation\Request;
 
 class BacController extends Controller
 {
@@ -11,12 +15,33 @@ class BacController extends Controller
         return $this->render('FormerStudentsBundle:Bac:index.html.twig', array('name' => 'okba'));
     }
 
-    public function inscriptionAction(){
-      return $this->render('FormerStudentsBundle:Bac:inscription.html.twig');
+    public function inscriptionAction(Request $request){
+      $formerStudent = new FormerStudent();
+      $university = new University();
+      $form = $this->get('form.factory')->create(new FormerStudentType, $formerStudent);
+
+      $form->handleRequest($request);
+
+      if ($form->isValid()){
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($formerStudent);
+        $em->flush();
+
+        $request->getSession()->getFlashBag()->add('notice', 'Vous êtes bien enregistré.');
+
+        return $this->redirect($this->generateUrl('former_students_list'));
+      }
+      return $this->render('FormerStudentsBundle:Bac:inscription.html.twig', array(
+        'form' => $form->createView(),
+      ));
     }
 
     public function listAction(){
-      return $this->render('FormerStudentsBundle:Bac:studentsList.html.twig');
+      $em = $this->getDoctrine()->getManager();
+      $studentsList = $em->getRepository('FormerStudentsBundle\Entity\FormerStudent')->findAll();
+
+      return $this->render('FormerStudentsBundle:Bac:studentsList.html.twig', 
+         array('students' => $studentsList));
     }
 
     public function documentationAction(){
