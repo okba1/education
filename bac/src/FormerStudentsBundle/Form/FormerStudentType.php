@@ -18,7 +18,11 @@ class FormerStudentType extends AbstractType
             ->add('firstName', 'text')
             ->add('lastName', 'text')
             ->add('mail', 'email')
+            ->add('civility', 'choice', array(
+                'choices' => array('m' => 'masculin', 'f' => 'Féminin')))
+            ->add('studySector', 'text')
             ->add('graduationYear', 'number')
+
             ->add('universities', 'collection', array(
                 'type'          => new UniversityType(),
                 'allow_add'     => true,

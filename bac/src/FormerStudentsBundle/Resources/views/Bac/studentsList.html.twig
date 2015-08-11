@@ -1,23 +1,62 @@
 {% extends "FormerStudentsBundle::layout.html.twig" %}
 
 {% block content %}
-<div class='panel-group'>
+<div class='content'>
 {% for student in students %}
-  <div class='panel-group-item'>
-    {{ student.firstName }}
-    {{ student.lastName }}
-    <button id='display-mail'>Afficher le mail</button>
-    {% for university in student.universities %}
-      {{ university.name }}
-      {{ university.country }}
-      {{ university.city }}
+  {% if loop.index0 is divisibleby(4) %}
+  <div class='row'>
+  {% endif %}
+  <div class='col-md-3 portfolio-item'>
+    {% if student.civility == 'm' %}
+    <img src="{{ asset('images/png/college.png') }}"/>
     {% else %}
-      Pas d'université pour cet étudiant
+    <img src="{{ asset('images/png/people.png') }}"/>
+    {% endif %}
+    {{ student.firstName }}
+    {{ student.lastName }}<br>
+     <img src="{{ asset('images/png/mail115.png') }}"/> {{ student.mail }}<br>
+    {% for university in student.universities %}
+       <img src="{{ asset('images/png/school72.png') }}"/>{{ university.name }}
+      {{ university.city }}
+      {{ university.country }}<br>
+    {% else %}
+      <img src="{{ asset('images/png/school72.png') }}"/> Université non renségnée.
     {% endfor %}
-
   </div>
+  {% if loop.index is divisibleby(4) or loop.index == loop.last %}
+  </div>
+  {% endif %}
 {% else %}
     No students have been found.
 {% endfor %}
+<hr>
+<div class="row text-center">
+  <div class="col-lg-12">
+      <ul class="pagination">
+          <li>
+              <a href="#">&laquo;</a>
+          </li>
+          <li class="active">
+              <a href="#">1</a>
+          </li>
+          <li>
+              <a href="#">2</a>
+          </li>
+          <li>
+              <a href="#">3</a>
+          </li>
+          <li>
+              <a href="#">4</a>
+          </li>
+          <li>
+              <a href="#">5</a>
+          </li>
+          <li>
+              <a href="#">&raquo;</a>
+          </li>
+      </ul>
+  </div>
+</div>
+<hr>
 </div>
 {% endblock %}

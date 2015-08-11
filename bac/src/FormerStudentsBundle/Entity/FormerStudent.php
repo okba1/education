@@ -38,6 +38,20 @@ class FormerStudent
     /**
      * @var string
      *
+     * @ORM\Column(name="civility", type="string", length=255)
+     */
+    private $civility;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="studySector", type="string", length=255)
+     */
+    private $studySector;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="mail", type="string", length=255)
      */
     private $mail;
@@ -117,6 +131,25 @@ class FormerStudent
         return $this->lastName;
     }
 
+    public function getCivility()
+    {
+        return $this->civility;
+    }
+
+    public function setCivility($civility)
+    {
+        $this->civility = $civility;
+        return $this;
+    }
+
+    public function getStudySector(){
+        return $this->studySector;
+    }
+
+    public function setStudySector($studySector){
+        $this->studySector = $studySector;
+        return $this;
+    }
     /**
      * Set mail
      *
