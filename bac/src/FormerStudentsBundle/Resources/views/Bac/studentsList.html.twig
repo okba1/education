@@ -2,19 +2,23 @@
 
 {% block content %}
 <div class='content'>
+<hr>
 {% for student in students %}
-  {% if loop.index0 is divisibleby(4) %}
+  {% if loop.index0 is divisibleby(2) %}
   <div class='row'>
   {% endif %}
-  <div class='col-md-3 portfolio-item'>
+  <div class='panel panel-success'>
+    <div class='panel-heading'>
     {% if student.civility == 'm' %}
     <img src="{{ asset('images/png/college.png') }}"/>
     {% else %}
     <img src="{{ asset('images/png/people.png') }}"/>
     {% endif %}
     {{ student.firstName }}
-    {{ student.lastName }}<br>
-     <img src="{{ asset('images/png/mail115.png') }}"/> {{ student.mail }}<br>
+    {{ student.lastName }}
+    </div>
+    <div class='panel-body'>
+    <img src="{{ asset('images/png/mail115.png') }}"/> {{ student.mail }}<br>
     {% for university in student.universities %}
        <img src="{{ asset('images/png/school72.png') }}"/>{{ university.name }}
       {{ university.city }}
@@ -22,8 +26,9 @@
     {% else %}
       <img src="{{ asset('images/png/school72.png') }}"/> Université non renségnée.
     {% endfor %}
+    </div>
   </div>
-  {% if loop.index is divisibleby(4) or loop.index == loop.last %}
+  {% if loop.index is divisibleby(2) or loop.index == loop.last %}
   </div>
   {% endif %}
 {% else %}

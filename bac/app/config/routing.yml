@@ -5,3 +5,6 @@ former_students:
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+
+fos_user_all:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

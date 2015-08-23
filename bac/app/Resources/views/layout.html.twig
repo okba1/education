@@ -15,7 +15,7 @@
 </head>
 
 <body>
-  {% block body %}
+  {% block nav %}
   <nav id='nav' class="nav-tabs.nav-justified" role="navigation">
     <div class="navbar-header">
         <a class="navbar-brand fa-ul" href="#">ZarzisStudy</a>
@@ -29,6 +29,9 @@
       </ul> 
     </div><!-- /.navbar-collapse -->
   </nav>
+  {% endblock %}
+
+  {% block head %}
   <div id='head' class="jumbotron">
     <div class="container"> 
         <h1>Zarzis Study</h1>
@@ -37,13 +40,15 @@
         </p>
     </div>
   </div>
-
+  {% endblock %}
   <section class='content'>
     {% block content %}
     {% endblock %}
   </section>
-  <footer>
-    <p>Copyright {{ 'now'|date('Y') }} and beyond.</p>
+  <hr>
+  {% block footer %}
+  <footer class='container'>
+    <p class='text-muted credit'>Copyright {{ 'now'|date('Y') }} and beyond.</p>
   </footer>
   {% endblock %}
   {% block javascripts %}

@@ -5,7 +5,7 @@ namespace FormerStudentsBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use \FormerStudentsBundle\Entity\FormerStudent;
 use \FormerStudentsBundle\Entity\University;
-use \FormerStudentsBundle\Form\FormerStudentType;
+use \FormerStudentsBundle\Form\RegistrationType;
 use Symfony\Component\HttpFoundation\Request;
 
 class BacController extends Controller
@@ -18,7 +18,7 @@ class BacController extends Controller
     public function inscriptionAction(Request $request){
       $formerStudent = new FormerStudent();
       $university = new University();
-      $form = $this->get('form.factory')->create(new FormerStudentType, $formerStudent);
+      $form = $this->get('form.factory')->create(new RegistrationType, $formerStudent);
 
       $form->handleRequest($request);
 

@@ -4,13 +4,15 @@ namespace FormerStudentsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * FormerStudent
  *
  *@ORM\Table
  *@ORM\Entity(repositoryClass="FormerStudentsBundle\Entity\FormerStudentRepository")
  */
-class FormerStudent
+class FormerStudent extends BaseUser
 {
     /**
      * @var integer
@@ -19,12 +21,19 @@ class FormerStudent
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="firstName", type="string", length=255)
+     * @Assert\Length(
+     *     min=3,
+     *     max=255,
+     *     minMessage="The name is too short.",
+     *     maxMessage="The name is too long.",
+     *     groups={"Registration", "Profile"}
+     * )
      */
     private $firstName;
 
@@ -72,8 +81,8 @@ class FormerStudent
 
     public function __construct()
     {
+        parent::__construct();
         $this->universities = new ArrayCollection();
-
     }
     /**
      * Get id
