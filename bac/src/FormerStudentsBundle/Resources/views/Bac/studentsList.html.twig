@@ -18,14 +18,12 @@
     {{ student.lastName }}
     </div>
     <div class='panel-body'>
-    <img src="{{ asset('images/png/mail115.png') }}"/> {{ student.mail }}<br>
-    {% for university in student.universities %}
-       <img src="{{ asset('images/png/school72.png') }}"/>{{ university.name }}
-      {{ university.city }}
-      {{ university.country }}<br>
-    {% else %}
-      <img src="{{ asset('images/png/school72.png') }}"/> Université non renségnée.
-    {% endfor %}
+    <img src="{{ asset('images/png/mail115.png') }}"/> {{ student.email }}<br>
+   
+       <img src="{{ asset('images/png/school72.png') }}"/>{{ student.university.name }}
+      {{ student.university.city }}
+      {{ student.university.country }}<br>
+   
     </div>
   </div>
   {% if loop.index is divisibleby(2) or loop.index == loop.last %}

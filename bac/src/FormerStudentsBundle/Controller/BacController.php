@@ -37,11 +37,10 @@ class BacController extends Controller
     }
 
     public function listAction(){
-      $em = $this->getDoctrine()->getManager();
-      $studentsList = $em->getRepository('FormerStudentsBundle\Entity\FormerStudent')->findAll();
-
-      return $this->render('FormerStudentsBundle:Bac:studentsList.html.twig', 
-         array('students' => $studentsList));
+        $em = $this->getDoctrine()->getManager();
+        $studentsList = $em->getRepository('FormerStudentsBundle\Entity\FormerStudent')->findAll();
+        return $this->render('FormerStudentsBundle:Bac:studentsList.html.twig',
+            array('students' => $studentsList));
     }
 
     public function documentationAction(){

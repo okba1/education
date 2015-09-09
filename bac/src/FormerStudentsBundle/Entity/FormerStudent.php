@@ -58,12 +58,6 @@ class FormerStudent extends BaseUser
      */
     private $studySector;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="mail", type="string", length=255)
-     */
-    private $mail;
 
     /**
      * @var int
@@ -73,16 +67,16 @@ class FormerStudent extends BaseUser
     private $graduationYear;
 
     /**
-     *@ORM\ManyToMany(targetEntity = "FormerStudentsBundle\Entity\University", cascade={"persist"})
+     *@ORM\OneToOne(targetEntity = "FormerStudentsBundle\Entity\University", cascade={"persist"})
      */
-    private $universities;
+    private $university;
 
 
 
     public function __construct()
     {
+        $this->university = new University();
         parent::__construct();
-        $this->universities = new ArrayCollection();
     }
     /**
      * Get id
@@ -159,28 +153,6 @@ class FormerStudent extends BaseUser
         $this->studySector = $studySector;
         return $this;
     }
-    /**
-     * Set mail
-     *
-     * @param string $mail
-     * @return FormerStudent
-     */
-    public function setMail($mail)
-    {
-        $this->mail = $mail;
-
-        return $this;
-    }
-
-    /**
-     * Get mail
-     *
-     * @return string 
-     */
-    public function getMail()
-    {
-        return $this->mail;
-    }
 
     /**
      * Set graduationYear
@@ -211,18 +183,9 @@ class FormerStudent extends BaseUser
      * @param string $university
      * @return FormerStudent
      */
-    public function addUniversity(University $university)
+    public function setUniversity(University $university)
     {
-        $this->universities[] = $$university;
-        return $this;
-    }
-
-    /**
-    * Remoce $university
-    * @param \FormerStudentBundle\Entity\University
-    */
-    public function removeUniversity(University $university){
-        $this->universities->removeElement($university);
+        $this->university = $university;
     }
 
 
@@ -230,8 +193,8 @@ class FormerStudent extends BaseUser
      *
      * @return string 
      */
-    public function getUniversities()
+    public function getUniversity()
     {
-        return $this->universities;
+        return $this->university;
     }
 }

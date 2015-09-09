@@ -23,17 +23,17 @@
      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="{{ path('former_students_home')}}" class='fa-lg'>Accueil<span class="sr-only">(current)</span></a></li>
-        <li><a href="{{ path('former_students_inscription')}}" class='fa-lg'>Inscription</a></li>
+        <li><a href="{{ path('fos_user_registration_register')}}" class='fa-lg'>Inscription</a></li>
         <li><a href="{{ path('former_students_list')}}" class='fa-lg'>Les anciens</a></li>
         <li><a href="{{ path('former_students_documentation')}}" class='fa-lg'>Documentation</a></li>
-      </ul> 
+      </ul>
     </div><!-- /.navbar-collapse -->
   </nav>
   {% endblock %}
 
   {% block head %}
   <div id='head' class="jumbotron">
-    <div class="container"> 
+    <div class="container">
         <h1>Zarzis Study</h1>
         <p>
             Le chemin vers l'excellence
@@ -41,6 +41,15 @@
     </div>
   </div>
   {% endblock %}
+  <div id='user-info'>
+    {% block userInfo %}
+
+      <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+
+        <a href="{{ path('fos_user_security_login') }}">Connexion</a>
+      
+    {% endblock %}
+  </div>
   <section class='content'>
     {% block content %}
     {% endblock %}
