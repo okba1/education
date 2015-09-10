@@ -24,6 +24,7 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="{{ path('former_students_home')}}" class='fa-lg'>Accueil<span class="sr-only">(current)</span></a></li>
         <li><a href="{{ path('fos_user_registration_register')}}" class='fa-lg'>Inscription</a></li>
+        <li><a href="{{ path('fos_user_security_login') }}" class='fa-lg'>Connexion</a></li>
         <li><a href="{{ path('former_students_list')}}" class='fa-lg'>Les anciens</a></li>
         <li><a href="{{ path('former_students_documentation')}}" class='fa-lg'>Documentation</a></li>
       </ul>
@@ -41,15 +42,7 @@
     </div>
   </div>
   {% endblock %}
-  <div id='user-info'>
-    {% block userInfo %}
-
-      <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
-
-        <a href="{{ path('fos_user_security_login') }}">Connexion</a>
-      
-    {% endblock %}
-  </div>
+ 
   <section class='content'>
     {% block content %}
     {% endblock %}
