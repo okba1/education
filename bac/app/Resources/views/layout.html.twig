@@ -20,15 +20,25 @@
     <div class="navbar-header">
         <a class="navbar-brand fa-ul" href="#">ZarzisStudy</a>
     </div>
-     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="{{ path('former_students_home')}}" class='fa-lg'>Accueil<span class="sr-only">(current)</span></a></li>
-        <li><a href="{{ path('fos_user_registration_register')}}" class='fa-lg'>Inscription</a></li>
-        <li><a href="{{ path('fos_user_security_login') }}" class='fa-lg'>Connexion</a></li>
+        {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+          <li><a href="{{ path('fos_user_registration_register')}}" class='fa-lg'>Inscription</a></li>
+        {% endif %}
         <li><a href="{{ path('former_students_list')}}" class='fa-lg'>Les anciens</a></li>
         <li><a href="{{ path('former_students_documentation')}}" class='fa-lg'>Documentation</a></li>
       </ul>
+      <ul class="nav navbar-nav navbar-right">
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+          <li><a href="{{ path('fos_user_security_logout') }}"><i class="glyphicon glyphicon-off"></i> Déconnexion</a></li>
+        {% else %}
+          <li><a href="{{ path('fos_user_security_login') }}"><i class="glyphicon glyphicon-off"></i> Connexion</a></li>
+        {% endif %}
+
+      </ul>
     </div><!-- /.navbar-collapse -->
+
   </nav>
   {% endblock %}
 
@@ -42,7 +52,7 @@
     </div>
   </div>
   {% endblock %}
- 
+
   <section class='content'>
     {% block content %}
     {% endblock %}
