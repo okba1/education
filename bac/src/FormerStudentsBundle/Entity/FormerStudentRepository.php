@@ -3,7 +3,7 @@
 namespace FormerStudentsBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-
+use Doctrine\ORM\Tools\Pagination\Paginator;
 /**
  * FormerStudentRepository
  *
@@ -12,4 +12,27 @@ use Doctrine\ORM\EntityRepository;
  */
 class FormerStudentRepository extends EntityRepository
 {
+        /**
+         * Get the paginated list of students
+         *
+         * @param int $page
+         * @param int $maxperpage
+         * @param string $sortby
+         * @return Paginator
+         */
+        public function getStudentsList($page=1, $maxperpage=10)
+        {
+            $q = $this->_em->createQueryBuilder()
+                ->select('formerStudent')
+                ->from('FormerStudentsBundle:FormerStudent','formerStudent')
+            ;
+     
+            $q->setFirstResult(($page-1) * $maxperpage)
+                ->setMaxResults($maxperpage);
+     
+            return new Paginator($q);
+        }
+
+
+
 }

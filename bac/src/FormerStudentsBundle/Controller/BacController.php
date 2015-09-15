@@ -36,11 +36,27 @@ class BacController extends Controller
       ));
     }
 
-    public function listAction(){
-        $em = $this->getDoctrine()->getManager();
-        $studentsList = $em->getRepository('FormerStudentsBundle\Entity\FormerStudent')->findAll();
-        return $this->render('FormerStudentsBundle:Bac:studentsList.html.twig',
-            array('students' => $studentsList));
+
+    public function listAction($page)
+    {
+        $maxStudents = $this->container->getParameter('max_students_per_page');
+        $StudentsCount = 5;
+        //$this->getDoctrine()->getRepository('FormerStudentsBundle\Entity\FormerStudent')->countPublishedTotal();
+
+        $pagination = array(
+            'page' => $page,
+            'route' => 'former_students_list',
+            'pages_count' => ceil($StudentsCount / $maxStudents),
+            'route_params' => array()
+        );
+ 
+        $students = $this->getDoctrine()->getRepository('FormerStudentsBundle\Entity\FormerStudent')
+                ->getStudentsList($page, $maxStudents);
+ 
+        return $this->render('FormerStudentsBundle:Bac:studentsList.html.twig', array(
+            'students' => $students,
+            'pagination' => $pagination
+        ));
     }
 
     public function documentationAction(){

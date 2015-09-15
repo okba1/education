@@ -6,9 +6,10 @@ former_students_inscription:
   path: /inscription
   defaults: { _controller: FormerStudentsBundle:Bac:inscription}
 
+
 former_students_list:
-  path: /list
-  defaults: { _controller: FormerStudentsBundle:Bac:list}
+    path:  /list/{page}
+    defaults: { _controller: FormerStudentsBundle:Bac:list, page: 1 }
 
 former_students_documentation:
   path: /documentation
