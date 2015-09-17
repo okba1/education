@@ -62,4 +62,11 @@ class BacController extends Controller
     public function documentationAction(){
       return $this->render('FormerStudentsBundle:Bac:documentation.html.twig');
     }
+
+    public function documentationProgramAction($annee, $section, $matiere){
+      $program = $this->getDoctrine()->getRepository('FormerStudentsBundle\Entity\Program')->findOneBy(array('annee' => $annee, 'section' => $section, 'matiere' => $matiere));
+       return $this->render('FormerStudentsBundle:Bac:documentation.html.twig', array('program' => $program));
+    }
+
+
 }

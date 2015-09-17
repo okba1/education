@@ -16,3 +16,6 @@ former_students_documentation:
   defaults: { _controller: FormerStudentsBundle:Bac:documentation}
 
 
+former_students_documentation_program:
+  path: /documentation/{annee}/{section}/{matiere}
+  defaults: { _controller: FormerStudentsBundle:Bac:documentationProgram}
