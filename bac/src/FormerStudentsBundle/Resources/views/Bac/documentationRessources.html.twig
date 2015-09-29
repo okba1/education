@@ -1,0 +1,9 @@
+{% for ressource in chapitre.ressources %}
+<div class="well well-sm">
+<a href="{{ ressource.url }}"> {{ressource.title}}</a>
+</div>
+{% else %}
+<div class="well well-sm">
+Aucune ressource
+</div>
+{% endfor %}

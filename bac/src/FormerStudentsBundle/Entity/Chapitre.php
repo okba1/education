@@ -4,7 +4,8 @@ namespace FormerStudentsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FormerStudentsBundle\Entity\Partie;
-
+use FormerStudentsBundle\Entity\Ressource;
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Chapitre
  *
@@ -32,13 +33,19 @@ class Chapitre
     /**
      *
      *
-     * *@ORM\ManyToOne(targetEntity = "FormerStudentsBundle\Entity\Partie", inversedBy="chapitres", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity = "FormerStudentsBundle\Entity\Partie", inversedBy="chapitres", cascade={"persist"})
      */
     private $partie;
+
+    /**
+    * @ORM\OneToMany(targetEntity = "FormerStudentsBundle\Entity\Ressource", mappedBy = "chapitre", cascade = {"persist"})
+    */
+    private $ressources;
 
     public function __construct()
     {
         $this->partie = new Partie();
+        $this->ressources = new ArrayCollection();
     }
 
     /**
@@ -94,5 +101,14 @@ class Chapitre
     public function getPartie()
     {
         return $this->partie;
+    }
+
+    public function addRessource(Ressource $ressource){
+        $this->ressources->add($ressource);
+        return $this;
+    }
+    
+    public function getRessources(){
+        return $this->ressources;
     }
 }

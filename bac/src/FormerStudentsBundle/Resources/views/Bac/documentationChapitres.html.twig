@@ -1,0 +1,37 @@
+{% if program is defined%}
+
+<ul class="nav nav-tabs">
+  {% for partie in program.parties %}
+    <li {% if  loop.index0 == 0 %}class="active" {% endif %}><a href="#{{ partie.id }}" data-toggle="tab"> {{ partie.name }}</a></li>
+  {% else %}
+    Aucune partie
+  {% endfor %}
+</ul>
+
+<div class="tabbable">
+  <div class="tab-content">
+    {% for partie in program.parties %}
+    <div class="tab-pane {% if loop.index0 == 0 %}active{% endif %}" id="{{ partie.id }}">
+      <div class="content-wrapper">
+        <div class="container">
+
+          <div class="row">
+          {% for chapitre in partie.chapitres %}
+          <h3>{{ chapitre.name }}</h3>
+          <hr>
+          {% include "FormerStudentsBundle:Bac:documentationRessources.html.twig" %}
+          {% else %}
+            Aucun chapitre
+          {% endfor %}
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    {% else %}
+      Aucune partie
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
