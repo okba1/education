@@ -12,8 +12,3 @@ $('[data-toggle=offcanvas]').click(function() {
 $('.btn-toggle').click(function() {
   $(this).find('.btn').toggleClass('active').toggleClass('btn-default').toggleClass('btn-primary');
 });
-
-$('.chapitre').click(function(){
-  var chapitre = $(this).data("chapitre");
-  console.log(chapitre);
-})

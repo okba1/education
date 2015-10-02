@@ -3,15 +3,15 @@
 namespace FormerStudentsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use FormerStudentsBundle\Entity\Partie;
+use FormerStudentsBundle\Entity\Chapitre;
 
 /**
- * Chapitre
+ * SousChapitre
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="FormerStudentsBundle\Entity\ChapitreRepository")
+ * @ORM\Entity(repositoryClass="FormerStudentsBundle\Entity\SousChapitreRepository")
  */
-class Chapitre
+class SousChapitre
 {
     /**
      * @var integer
@@ -31,14 +31,14 @@ class Chapitre
 
     /**
      *
-     *
-     * *@ORM\ManyToOne(targetEntity = "FormerStudentsBundle\Entity\Partie", inversedBy="chapitres", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity = "FormerStudentsBundle\Entity\Chapitre", cascade={"persist"})
      */
-    private $partie;
+    private $chapitre;
+
 
     public function __construct()
     {
-        $this->partie = new Partie();
+        $this->chapitre = new Chapitre();
     }
 
     /**
@@ -55,7 +55,7 @@ class Chapitre
      * Set name
      *
      * @param string $name
-     * @return Chapitre
+     * @return SousChapitre
      */
     public function setName($name)
     {
@@ -75,24 +75,25 @@ class Chapitre
     }
 
     /**
-     * Set program
+     * Set chapitre
      *
-     * @param \stdClass $program
-     * @return Chapitre
+     * @param \stdClass $chapitre
+     * @return SousChapitre
      */
-    public function setPartie(Partie $partie)
+    public function setChapitre(Chapitre $chapitre)
     {
-        $this->partie = $partie;
+        $this->chapitre = $chapitre;
 
         return $this;
     }
 
     /**
-     * Get partie
+     * Get chapitre
      *
+     * @return \stdClass 
      */
-    public function getPartie()
+    public function getChapitre()
     {
-        return $this->partie;
+        return $this->chapitre;
     }
 }

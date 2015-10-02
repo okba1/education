@@ -3,15 +3,14 @@
 namespace FormerStudentsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use FormerStudentsBundle\Entity\Partie;
 
 /**
- * Chapitre
+ * University
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="FormerStudentsBundle\Entity\ChapitreRepository")
+ * @ORM\Entity
  */
-class Chapitre
+class University
 {
     /**
      * @var integer
@@ -30,16 +29,19 @@ class Chapitre
     private $name;
 
     /**
+     * @var string
      *
-     *
-     * *@ORM\ManyToOne(targetEntity = "FormerStudentsBundle\Entity\Partie", inversedBy="chapitres", cascade={"persist"})
+     * @ORM\Column(name="country", type="string", length=255)
      */
-    private $partie;
+    private $country;
 
-    public function __construct()
-    {
-        $this->partie = new Partie();
-    }
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city", type="string", length=255)
+     */
+    private $city;
+
 
     /**
      * Get id
@@ -55,7 +57,7 @@ class Chapitre
      * Set name
      *
      * @param string $name
-     * @return Chapitre
+     * @return University
      */
     public function setName($name)
     {
@@ -75,24 +77,48 @@ class Chapitre
     }
 
     /**
-     * Set program
+     * Set country
      *
-     * @param \stdClass $program
-     * @return Chapitre
+     * @param string $country
+     * @return University
      */
-    public function setPartie(Partie $partie)
+    public function setCountry($country)
     {
-        $this->partie = $partie;
+        $this->country = $country;
 
         return $this;
     }
 
     /**
-     * Get partie
+     * Get country
      *
+     * @return string 
      */
-    public function getPartie()
+    public function getCountry()
     {
-        return $this->partie;
+        return $this->country;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     * @return University
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string 
+     */
+    public function getCity()
+    {
+        return $this->city;
     }
 }
